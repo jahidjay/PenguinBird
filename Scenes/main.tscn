@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://co1685mrjxvre"]
+
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_1ygcu"]
+[ext_resource type="Script" path="res://Scenes/Bird.gd" id="1_j6r2m"]
+[ext_resource type="Texture2D" uid="uid://dfuofh4nwer0n" path="res://assets/bird1.png" id="2_kij2v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yjw0r"]
+radius = 17.0
+height = 46.0
+
+[node name="main" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(137, 218)
+texture = ExtResource("1_1ygcu")
+
+[node name="BirdCharacter" type="CharacterBody2D" parent="."]
+position = Vector2(145, 256)
+script = ExtResource("1_j6r2m")
+
+[node name="Texture2D" type="Sprite2D" parent="BirdCharacter"]
+texture = ExtResource("2_kij2v")
+
+[node name="Collision2D" type="CollisionShape2D" parent="BirdCharacter"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yjw0r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BirdCharacter"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(145, 256)
