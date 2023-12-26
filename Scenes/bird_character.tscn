@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnaikn3bx6j2"]
+
+[ext_resource type="Script" path="res://Scripts/Bird.gd" id="1_fmdpy"]
+[ext_resource type="Texture2D" uid="uid://dfuofh4nwer0n" path="res://assets/bird1.png" id="2_7e6ke"]
+[ext_resource type="Texture2D" uid="uid://cb3fw6j2c364v" path="res://assets/bird3.png" id="3_cktw1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_370pu"]
+radius = 16.0
+height = 46.0
+
+[sub_resource type="Animation" id="Animation_wnx3h"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_cfsbu"]
+resource_name = "flap_wings"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_cktw1"), ExtResource("2_7e6ke"), ExtResource("2_7e6ke")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wubu0"]
+_data = {
+"Idle": SubResource("Animation_wnx3h"),
+"flap_wings": SubResource("Animation_cfsbu")
+}
+
+[node name="BirdCharacter" type="CharacterBody2D"]
+position = Vector2(0, -10)
+script = ExtResource("1_fmdpy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7e6ke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_370pu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wubu0")
+}
+speed_scale = 1.715
