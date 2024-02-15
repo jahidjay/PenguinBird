@@ -29,7 +29,7 @@ func _process(delta):
 func _on_ground_entered(body):
 	bird_crashed.emit()
 	stop()
-	(body as Bird).stop()
+	(body as BirdCharacter).stop()
 	
 func stop():
 	speed = 0

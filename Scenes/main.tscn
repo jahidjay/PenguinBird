@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://co1685mrjxvre"]
+[gd_scene load_steps=5 format=3 uid="uid://co1685mrjxvre"]
 
 [ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_1ygcu"]
 [ext_resource type="PackedScene" uid="uid://bnaikn3bx6j2" path="res://Scenes/bird_character.tscn" id="2_mm6s5"]
 [ext_resource type="PackedScene" uid="uid://bqnqmxqa2iw3g" path="res://Scenes/ground.tscn" id="3_q2s3y"]
+[ext_resource type="PackedScene" uid="uid://bg6tb58y1wvc1" path="res://Scenes/pipe_spawner.tscn" id="4_oreyv"]
 
 [node name="main" type="Node"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(66, -122)
+position = Vector2(6, -133)
 texture = ExtResource("1_1ygcu")
 
 [node name="BirdCharacter" parent="." instance=ExtResource("2_mm6s5")]
-position = Vector2(3, -2)
-motion_mode = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(1, -1)
 
 [node name="Ground" parent="." instance=ExtResource("3_q2s3y")]
-position = Vector2(261, 259)
+position = Vector2(-1, 251)
+
+[node name="PipeSpawner" parent="." instance=ExtResource("4_oreyv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -4)

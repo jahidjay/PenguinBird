@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 
-class_name Bird
+class_name BirdCharacter
 @export var gravity = 900.0
-@export var jump_force = -300
+@export var jump_force = -420
 @export var rotation_speed = 2
 
 @onready var animation_player = $AnimationPlayer
@@ -28,16 +28,18 @@ func _physics_process(delta):
 			is_started = true 
 		jump()
 		
+		
 	if !is_started:
 		return
-		velocity.y += gravity * delta
-		velocity.y = min(velocity.y, max_speed)
+	velocity.y += gravity * delta
+	velocity.y = min(velocity.y, max_speed)
 		
-		move_and_collide(velocity * delta)
+	if velocity.y > SPEED:
+		velocity.y = SPEED
 		
-		rotate_Bird()
-		
-
+	move_and_collide(velocity * delta)
+	rotate_Bird()
+	
 		
 func jump():
 	velocity.y = jump_force 
